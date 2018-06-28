@@ -4,7 +4,8 @@ class Student
   #  with DB[:conn]
   @@all = []
 
-  attr_accessor :name, :grade, :id
+  attr_accessor :name, :grade
+  attr_reader :id
 
   def initialize(name = nil, grade = nil)
     @name = name
@@ -12,8 +13,8 @@ class Student
     @@all << self
   end
 
-  def self.create(name, grade)
-    student = Student.new(name, grade)
+  def self.create(attribute_hash)
+    student = Student.new(attribute_hash[:name], attribute_hash[:grade])
     student.save
     student
   end
