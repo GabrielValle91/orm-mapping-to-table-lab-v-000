@@ -1,10 +1,10 @@
 class Student
 
   # Remember, you can access your database connection anywhere in this class
-  #  with DB[:conn]  
+  #  with DB[:conn]
   @@all = []
 
-  attr_accessor :name, :grade
+  attr_accessor :name, :grade, :id
 
   def initialize
     @@all << self
@@ -27,6 +27,7 @@ class Student
       VALUES (?, ?)
     SQL
     DB[:conn].execute(sql, self.name, self.grade)
+    @id = DB[:conn].execute ("SELECT last_insert_rowid() FROM students")[0][0]
   end
-  
+
 end
