@@ -6,14 +6,14 @@ class Student
 
   attr_accessor :name, :grade, :id
 
-  def initialize(name:, grade:)
-    @name = name
-    @grade = grade
+  def initialize
     @@all << self
   end
 
   def self.create(name:, grade:)
-    student = Student.new(name, grade)
+    student = Student.new
+    student.name = name
+    student.grade = grade
     student.save
     student
   end
